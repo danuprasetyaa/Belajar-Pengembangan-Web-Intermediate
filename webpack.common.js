@@ -8,7 +8,7 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
     clean: true,
-    publicPath: './',
+    publicPath: '/Belajar-Pengembangan-Web-Intermediate/',
   },
   module: {
     rules: [
@@ -24,7 +24,7 @@ module.exports = {
           { from: './src/manifest.webmanifest', to: 'manifest.webmanifest' },
           { from: './src/icons', to: 'icons' },
           { from: './src/screenshots', to: 'screenshots', noErrorOnMissing: true },
-          { from: './src/scripts/service-worker.js', to: 'service-worker.js' }
+          { from: './src/service-worker.js', to: 'service-worker.js' }
         ]
       })
     ],

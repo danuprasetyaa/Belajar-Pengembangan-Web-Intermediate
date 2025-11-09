@@ -70,8 +70,18 @@ const App = {
 // --------- SERVICE WORKER REGISTER -------------------
 async function registerServiceWorker() {
   if (!('serviceWorker' in navigator)) return;
+
   try {
-    const reg = await navigator.serviceWorker.register('./service-worker.js', { scope: '/' });
+    // Tentukan base path secara otomatis (lokal / GitHub Pages)
+    const BASE_PATH = location.hostname === 'localhost'
+      ? '/'
+      : '/Belajar-Pengembangan-Web-Intermediate/';
+
+    const reg = await navigator.serviceWorker.register(
+      `${BASE_PATH}service-worker.js`,
+      { scope: BASE_PATH }
+    );
+
     console.log('SW registered:', reg.scope);
   } catch (err) {
     console.error('SW register failed:', err);

@@ -1,16 +1,17 @@
 /* ====== CONFIG ====== */
 const APP_CACHE  = 'app-shell-v2';
 const DATA_CACHE = 'data-cache-v1';
+const BASE = self.registration.scope.replace(location.origin, "").replace(/\/$/, "") + "/";
 
 const APP_SHELL = [
-  '/', 
-  '/index.html',
-  '/bundle.js',
-  '/styles/style.css',
-  '/manifest.webmanifest',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png',
-  '/icons/badge-72.png',
+  `${BASE}`,
+  `${BASE}index.html`,
+  `${BASE}bundle.js`,
+  `${BASE}styles/style.css`,
+  `${BASE}manifest.webmanifest`,
+  `${BASE}icons/icon-192.png`,
+  `${BASE}icons/icon-512.png`,
+  `${BASE}icons/badge-72.png`
 ];
 
 /* ====== INSTALL: cache app shell ====== */
@@ -58,7 +59,7 @@ self.addEventListener('fetch', (event) => {
  // 2) SPA navigation fallback (offline): semua navigasi ke index.html
   if (req.mode === 'navigate') {
     event.respondWith(
-      caches.match('/index.html').then((r) => r || fetch('/index.html'))
+      caches.match(`${BASE}index.html`).then((r) => r || fetch(`${BASE}index.html`))
     );
     return;
   }
